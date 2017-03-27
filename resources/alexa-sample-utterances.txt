@@ -1,0 +1,25 @@
+GetWhoIsAtHome who's in
+GetWhoIsAtHome who is in
+GetWhoIsAtHome who's about
+GetWhoIsAtHome who is about
+GetWhoIsAtHome who's in the house
+GetWhoIsAtHome who is in the house
+GetWhoIsAtHome who's at home
+GetWhoIsAtHome who is at home
+GetWhoIsAtHome status
+GetWhoIsAtHome who's around
+GetWhoIsAtHome who is around
+GetWhoIsAtHome is {Occupant} in
+GetWhoIsAtHome if {Occupant} is in
+GetWhoIsAtHome is {Occupant} in the house
+GetWhoIsAtHome if {Occupant} is in house
+GetWhoIsAtHome is {Occupant} around
+GetWhoIsAtHome if {Occupant} is around
+GetWhoIsAtHome is {Occupant} about
+GetWhoIsAtHome if {Occupant} is about
+GetWhoIsAtHome is {Occupant} at home
+GetWhoIsAtHome if {Occupant} is at home
+PCStartup turn on my computer
+PCStartup start up my computer
+PCShutdown turn off my computer
+PCShutdown shut down my computer

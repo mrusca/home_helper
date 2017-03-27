@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <pre>{{ known | json_encode(constant('JSON_PRETTY_PRINT')) }}</pre>
+    <pre>{{ atHome | json_encode(constant('JSON_PRETTY_PRINT')) }}</pre>
+    
+    <table cellspacing="0">
+        <tr>
+            <td>Hour</td>
+        {% for available in hourMarkers %}
+                <td class="maclog {{ available ? 'available' : '' }}" 
+                    style="{{ available ? 'background-color: black;' : '' }}"> </td>
+        {% endfor %}
+        </tr>
+        {% for mac, macLog in arpLog %}
+            <tr>
+                <td>{{ mac }}</td>
+                {% for date, available in macLog %}
+                    <td class="maclog {{ available ? 'available' : '' }}" 
+                        style="{{ available ? 'background-color: black;' : '' }}"> </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

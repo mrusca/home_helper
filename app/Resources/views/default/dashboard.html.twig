@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block title %}Dashboard{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('/static/styles/normalize.css') }}">
+<link rel="stylesheet" href="{{ asset('/static/styles/dashboard.css') }}">
+{% endblock %}
+{% block javascripts %}
+<script>
+setTimeout(function() {
+    window.location.reload();
+}, 120000);
+</script>
+{% endblock %}
+{% block body %}
+    <p>{{ when }}</p>
+    <table>
+        {% for person in knownPeople %}
+            <tr class="{{ person.isVisible ? 'active' : ''}}">
+                {#<td>{{ person.key }}</td>#}
+                <td>{{ person.name }}</td>
+                <td>{{ person.isVisible ? '✔' : '' }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <h3> </h3>
+    <table>
+        <tr class="">
+            <td>Power</td>
+            <td>{{ power.emeter.get_realtime.power | round(1) }}W</td>
+        </tr>
+    </table>
+    <h3> </h3>
+    <table class="weather">
+        {% if weather is empty %}
+            <tr>
+                <td>No rain in the next 48 hours</td>
+            </tr>
+        {% endif %}
+        {% for item in weather %}
+            <tr class="{{ item.urgent ? 'active' : '' }}">
+                <td>{{ item.start | date('D H:i') }}</td>
+                <td class="{{ item.continuing ? 'light' : '' }}">{{ 
+                    (item.continuing ? '↴' : (item.end | date('D H:i')))
+                }}</td>
+                <td>{{ item.text }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,53 @@
+# Our architecture is something like
+# 0) nginx:80, force SSL
+# 1) nginx:443, strip SSL
+
+upstream php-fpm {
+    server unix:/var/run/php/php7.0-fpm.sock;
+}
+
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    server_name _;
+    server_tokens off;
+
+    return 301 https://$host$request_uri;
+}
+
+# The actual backend
+server {
+    listen 443 ssl default_server;
+    listen [::]:443 ssl default_server;
+    server_tokens off;
+
+    ssl_certificate /etc/letsencrypt/live/##DOMAIN_NAME##/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/##DOMAIN_NAME##/privkey.pem;
+
+    root ##PROJECT_PATH##/web;
+ 
+    location /external {
+        # Allow the internet to access, so that Alexa Voice Services can actually get to us
+        allow all;
+
+        # try to serve file directly, fallback to app.php
+        try_files $uri /app.php$is_args$args;
+    } 
+
+    location / {
+        # Local network only
+        allow ##LOCAL_NETWORK_MASK##;
+        deny all;
+
+        # try to serve file directly, fallback to app.php
+        try_files $uri /app.php$is_args$args;
+    }
+
+    location ~ ^/(app|app_dev|config)\.php(/|$) {
+        fastcgi_pass php-fpm;
+        fastcgi_split_path_info ^(.+\.php)(/.*)$;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+}

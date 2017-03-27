@@ -1,0 +1,24 @@
+{
+  "intents": [
+    {
+      "intent": "GetWhoIsAtHome",
+      "slots": [
+        {
+          "name": "Occupant",
+          "type": "OCCUPANT"
+        }
+      ]
+    },
+    {
+      "intent": "PCStartup",
+      "slots": []
+    },
+    {
+      "intent": "PCShutdown",
+      "slots": []
+    },
+    {
+      "intent": "Test"
+    }
+  ]
+}

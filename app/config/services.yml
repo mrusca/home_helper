@@ -1,0 +1,15 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+    network_presence:
+        class: AppBundle\Service\NetworkPresenceService
+        calls:
+          - [ setContainer, [ "@service_container" ] ]
+          - [ setKnownPeople, [ "%network_people%" ] ]
+    weather:
+        class: AppBundle\Service\WeatherService
+        calls:
+          - [ setContainer, [ "@service_container" ] ]

@@ -1,0 +1,27 @@
+parameters:
+
+    # A secret key that's used to generate certain security-related tokens
+    secret:            ThisTokenIsNotSoSecretChangeIt
+
+    # Redis connection data source name
+    redis_dsn:         redis://localhost
+
+    # Configuration for Dark Sky weather API
+    weather:
+        api_key: ~
+        location: '51.507337,-0.127657'
+
+    # The IP address of a TP Link HS110 plug
+    tp_link_plug_ip: 192.168.0.0
+
+    # You Amazon Alexa Skill Application ID
+    alexa_home_skill_id: ~
+
+    # The people for whose presence you will be checking
+    network_people:
+        userId1Here:
+            names:
+                - Primary name
+                - Alternative name
+                - Nickname
+            address: 'MA:CA:DD:RE:SS'

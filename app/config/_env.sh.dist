@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# The MAC addresses of your Windows PC that you want to start up via Wake On Lan
+STARTUP_WOL_MACS="MA:CA:DD:RE:SS MA:CA:DD:RE:SS"
+
+# The hostname of the Windows PC you want to shutdown
+SHUTDOWN_HOSTNAME="my_computer"
+
+# The net rpc compatible "user%password" string for your Windows PC
+SHUTDOWN_USER="user_name%password"
+
+# The fping compatible range of your local network that you're going to scan for your house members' devices
+NETWORK_PING_RANGE="192.168.0.10 192.168.0.255"

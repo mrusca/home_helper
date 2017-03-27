@@ -1,0 +1,7 @@
+# home_helper cron table
+
+# Update our network presence information every minute
+*   * * * *   root    ##PROJECT_PATH##/bin/network_presence.sh
+
+# Update our weather information every five minutes
+*/5 * * * *   root    php ##PROJECT_PATH##/bin/console weather:get
