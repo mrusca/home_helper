@@ -243,9 +243,10 @@ class HomeSkill extends BaseSkill
     {
         $rootDir = $this->container->getParameter('kernel.root_dir');
         $binPath = $rootDir . '/../bin/';
+        $ip = $this->container->getParameter('tp_link_plug_ip');
         
         $commands = [
-            'php ' . $binPath . 'console plug:startup',
+            'php ' . $binPath . 'console plug:startup --target=' . $ip,
             $binPath . 'pc-startup.sh',
         ];
         
@@ -259,14 +260,14 @@ class HomeSkill extends BaseSkill
     {
         $rootDir = $this->container->getParameter('kernel.root_dir');
         $binPath = $rootDir . '/../bin/';
+        $ip = $this->container->getParameter('tp_link_plug_ip');
         
         $commands = [
             $binPath . 'pc-shutdown.sh',
-            'php ' . $binPath . 'console plug:shutdown --wait=9',            
+            'php ' . $binPath . 'console plug:shutdown --wait=9 --target=' . $ip,
         ];
         
         $process = new BackgroundProcess(implode('; ', $commands));
-        
         $process->run($rootDir . '/../var/logs/bg_proc.log');
 
         $response->respond('Shutting down');
